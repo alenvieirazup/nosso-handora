@@ -1,13 +1,10 @@
 package br.com.zup.edu.handora.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class Curso {
@@ -27,7 +24,13 @@ public class Curso {
     private Boolean ativo = false;
 
     @Column(nullable = false)
+    private Integer numeroDeVagas;
+
+    @Column(nullable = false)
     private LocalDateTime criadoEm = LocalDateTime.now();
+
+    @ManyToMany(mappedBy = "cursos")
+    private Set<Pessoa> participantes = new HashSet<>();
 
     /**
      * @deprecated Construtor de uso exclusivo do Hibernate
@@ -35,9 +38,10 @@ public class Curso {
     @Deprecated
     public Curso() {}
 
-    public Curso(String nome, String descricao) {
+    public Curso(String nome, String descricao, Integer numeroDeVagas) {
         this.nome = nome;
         this.descricao = descricao;
+        this.numeroDeVagas = numeroDeVagas;
     }
 
     public Long getId() {
@@ -52,12 +56,21 @@ public class Curso {
         return descricao;
     }
 
+    public Integer getNumeroDeVagas() {
+        return numeroDeVagas;
+    }
+
     public Boolean isAtivo() {
         return ativo;
     }
 
     public LocalDateTime getCriadoEm() {
         return criadoEm;
+    }
+
+    public void adicionarPessoa(Pessoa pessoa) {
+        this.participantes.add(pessoa);
+        pessoa.adicionarCurso(this);
     }
 
 }

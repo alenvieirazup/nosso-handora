@@ -8,6 +8,7 @@ public class BuscaDinamicaCursoResponse {
 
     private String nome;
     private String descricao;
+    private Integer numeroDeVagas;
     private LocalDateTime criadoEm;
 
     public BuscaDinamicaCursoResponse() {}
@@ -15,6 +16,7 @@ public class BuscaDinamicaCursoResponse {
     public BuscaDinamicaCursoResponse(Curso curso) {
         this.nome = curso.getNome();
         this.descricao = curso.getDescricao();
+        this.numeroDeVagas = curso.getNumeroDeVagas();
         this.criadoEm = curso.getCriadoEm();
     }
 
@@ -24,6 +26,10 @@ public class BuscaDinamicaCursoResponse {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Integer getNumeroDeVagas() {
+        return numeroDeVagas;
     }
 
     public LocalDateTime getCriadoEm() {
