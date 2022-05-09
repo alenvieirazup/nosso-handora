@@ -29,6 +29,7 @@ public class DataLoader implements CommandLineRunner {
                     + "em bancos de dados relacionais, como tirar proveito da JPA e Hibernate ao "
                     + "escrever lógicas de negócio seguras e consistentes em ambientes "
                     + "concorrentes, e também a definir constraints de unicidade no banco de dados.",
+                true,
                 1
         );
 

@@ -1,5 +1,11 @@
 package br.com.zup.edu.handora.model;
 
+import br.com.zup.edu.handora.exception.CursoInativoException;
+import br.com.zup.edu.handora.exception.CursoSemVagaException;
+import br.com.zup.edu.handora.exception.PessoaJaMatriculadaException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +50,13 @@ public class Curso {
         this.numeroDeVagas = numeroDeVagas;
     }
 
+    public Curso(String nome, String descricao, Boolean ativo, Integer numeroDeVagas) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.ativo = ativo;
+        this.numeroDeVagas = numeroDeVagas;
+    }
+
     public Long getId() {
         return id;
     }
@@ -71,6 +84,24 @@ public class Curso {
     public void adicionarPessoa(Pessoa pessoa) {
         this.participantes.add(pessoa);
         pessoa.adicionarCurso(this);
+    }
+
+
+    public void matricular(Pessoa pessoa) {
+
+        if(this.participantes.contains(pessoa)){
+            throw new PessoaJaMatriculadaException("Pessoa já matriculada");
+        }
+
+        if(!this.ativo){
+            throw new CursoInativoException("Curso inativo");
+        }
+
+        if(this.numeroDeVagas <= this.participantes.size()){
+            throw new CursoSemVagaException("Curso sem vagas");
+        }
+
+        this.adicionarPessoa(pessoa);
     }
 
 }
