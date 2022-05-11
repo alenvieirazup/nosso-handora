@@ -4,10 +4,13 @@ import br.com.zup.edu.handora.exception.CursoInativoException;
 import br.com.zup.edu.handora.exception.CursoSemVagaException;
 import br.com.zup.edu.handora.exception.PessoaJaMatriculadaException;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -86,21 +89,18 @@ public class Curso {
         pessoa.adicionarCurso(this);
     }
 
+    public boolean isVagas() {
+        return this.numeroDeVagas <= this.participantes.size();
+    }
+
+    public boolean isMatriculada(Pessoa pessoa) {
+        return this.participantes.contains(pessoa);
+    }
 
     public void matricular(Pessoa pessoa) {
-
-        if(this.participantes.contains(pessoa)){
-            throw new PessoaJaMatriculadaException("Pessoa já matriculada");
-        }
-
-        if(!this.ativo){
-            throw new CursoInativoException("Curso inativo");
-        }
-
-        if(this.numeroDeVagas <= this.participantes.size()){
-            throw new CursoSemVagaException("Curso sem vagas");
-        }
-
+        if(!this.ativo) throw new CursoInativoException("Curso inativo");
+        if(isMatriculada(pessoa)) throw new PessoaJaMatriculadaException("Pessoa já matriculada");
+        if(isVagas()) throw new CursoSemVagaException("Curso sem vagas");
         this.adicionarPessoa(pessoa);
     }
 
