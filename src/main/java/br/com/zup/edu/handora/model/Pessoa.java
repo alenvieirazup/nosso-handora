@@ -1,8 +1,15 @@
 package br.com.zup.edu.handora.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Pessoa {
@@ -15,12 +22,8 @@ public class Pessoa {
     private String nome;
 
     @ManyToMany
-    @JoinTable(
-            name = "pessoa_curso",
-            joinColumns = @JoinColumn(name = "pessoa_id"),
-            inverseJoinColumns = @JoinColumn(name = "curso_id")
-    )
-    private Set<Curso> cursos = new HashSet<>();
+    @JoinTable(name = "pessoa_turma", joinColumns = @JoinColumn(name = "pessoa_id"), inverseJoinColumns = @JoinColumn(name = "turma_id"))
+    private Set<Turma> turmas;
 
     public Pessoa(String nome) {
         this.nome = nome;
@@ -30,14 +33,14 @@ public class Pessoa {
      * @deprecated Construtor para uso exclusivo do Hibernate.
      */
     @Deprecated
-    public Pessoa() {
-    }
+    public Pessoa() {}
 
     public Long getId() {
         return id;
     }
 
-    public void adicionarCurso(Curso curso) {
-        this.cursos.add(curso);
+    public void adicionarTurma(Turma turma) {
+        this.turmas.add(turma);
     }
+
 }

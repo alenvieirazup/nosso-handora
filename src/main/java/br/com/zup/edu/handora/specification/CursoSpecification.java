@@ -1,9 +1,7 @@
 package br.com.zup.edu.handora.specification;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.Predicate;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -19,9 +17,10 @@ public class CursoSpecification {
             }
 
             Predicate[] predicates = new Predicate[nomes.size()];
-            for(int i = 0; i < nomes.size(); i++) {
+            for (int i = 0; i < nomes.size(); i++) {
                 Predicate p = criteriaBuilder.like(
-                        criteriaBuilder.upper(root.get("nome")), "%" + nomes.get(i).toUpperCase() + "%");
+                    criteriaBuilder.upper(root.get("nome")), "%" + nomes.get(i).toUpperCase() + "%"
+                );
 
                 predicates[i] = p;
             }
