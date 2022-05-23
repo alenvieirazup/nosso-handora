@@ -28,7 +28,7 @@ public class Turma {
     private Set<Pessoa> pessoas = new HashSet<>();
 
     @Column(nullable = false)
-    private Integer vagasDisponiveis;
+    private boolean vagasDisponiveis;
 
     @Version
     private int versao;
@@ -41,7 +41,7 @@ public class Turma {
 
     public Turma(Curso curso) {
         this.curso = curso;
-        this.vagasDisponiveis = curso.getNumeroDeVagas();
+        this.vagasDisponiveis = this.curso.getNumeroDeVagas() > 0;
     }
 
     public Long getId() {
@@ -51,7 +51,7 @@ public class Turma {
     public void adicionar(Pessoa pessoa) {
         this.pessoas.add(pessoa);
         pessoa.adicionarTurma(this);
-        this.vagasDisponiveis--;
+        this.vagasDisponiveis = this.curso.getNumeroDeVagas() > this.tamanho();
     }
 
     public Integer tamanho() {
