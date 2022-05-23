@@ -2,6 +2,7 @@ package br.com.zup.edu.handora.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class MatricularPessoaController {
         this.pessoaRepository = pessoaRepository;
     }
 
-    @PostMapping("/api/cursos/{idCurso}/pessoas/{idPessoa}")
+    @PatchMapping("/api/cursos/{idCurso}/pessoas/{idPessoa}")
     public ResponseEntity<?> matricular(@PathVariable("idCurso") Long idCurso,
                                         @PathVariable("idPessoa") Long idPessoa) {
 
