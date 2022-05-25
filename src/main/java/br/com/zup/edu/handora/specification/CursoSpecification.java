@@ -41,4 +41,17 @@ public class CursoSpecification {
         };
     }
 
+    public static Specification<Curso> ativo(Boolean ativo) {
+        return (root, criteriaQuery, criteriaBuilder) -> {
+            if (ativo == null) {
+                return criteriaBuilder.conjunction();
+            }
+
+            return criteriaBuilder.equal(
+                    root.get("ativo"), ativo
+            );
+
+        };
+    }
+
 }

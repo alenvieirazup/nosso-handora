@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.zup.edu.handora.exception.CursoInativoException;
+import br.com.zup.edu.handora.exception.CursoNumeroDeVagasMenorException;
 import br.com.zup.edu.handora.exception.CursoSemVagaException;
 import br.com.zup.edu.handora.exception.PessoaJaMatriculadaException;
 
@@ -116,4 +117,20 @@ public class Curso {
         this.adicionarPessoa(pessoa);
     }
 
+    public void atualiza(String nome, String descricao, Integer numeroDeVagas, Boolean ativo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.ativo = ativo;
+
+        if (numeroDeVagas < this.turma.tamanho()){
+            throw new CursoNumeroDeVagasMenorException("Não permitido diminuir número de vagas do curso para uma " +
+                    "quantidade menor que o número de pessoas matriculadas");
+        }
+
+        this.numeroDeVagas = numeroDeVagas;
+    }
+
+    public void desativa() {
+        this.ativo = false;
+    }
 }

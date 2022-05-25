@@ -9,12 +9,9 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -58,10 +55,39 @@ public class CursoController {
             Specification.where(
                 CursoSpecification.nomes(request.getNomes())
                                   .and(CursoSpecification.descricao(request.getDescricao()))
+                                  .and(CursoSpecification.ativo(request.getAtivo()))
             )
         ).stream().map(BuscaDinamicaCursoResponse::new).collect(Collectors.toList());
 
         return ResponseEntity.ok(cursos);
     }
+
+    @PutMapping("/api/cursos/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaCursoRequest request){
+
+        Curso curso = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
+                "Curso com esse id não cadastrado"));
+
+        curso.atualiza(request.getNome(), request.getDescricao(), request.getNumeroDeVagas(), request.getAtivo());
+
+        repository.save(curso);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/api/cursos/{id}")
+    public ResponseEntity<?> desativar(@PathVariable Long id){
+
+        Curso curso = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
+                "Curso com esse id não cadastrado"));
+
+        curso.desativa();
+
+        repository.save(curso);
+
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 }

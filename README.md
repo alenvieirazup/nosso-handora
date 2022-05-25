@@ -2,14 +2,16 @@
 
 ## TODOs
 
-- Terminar o CRUD da classe `Curso`
-  - Só pode aumentar o número de vagas, nunca diminuir
 - Modelagem de seções e atividades
+- Fazer o ExceptionHandler
+- Acrescentar novos conteúdos estudados (migration, teste, log)
 
 ## Dúvidas
 
-- Lock otimista com mapeamento muitos-para-muitos
-- Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
+- (Thiago) Lock otimista com mapeamento muitos-para-muitos
+- (Eloy) Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
+- (Denes) Put e pach quando existe atributos de relacionamento
+- (Alen) Em métodos de atualizar podemos passar o request para a entidade
 
 ## Feito
 
@@ -20,3 +22,6 @@
 - Implementar lock para tratar concorrência
 - Mudança de atributo de atualização vagasDisponiveis de Integer para boolean
 - Mudança de POST para PATCH no controlador para matricular uma pessoa em um curso
+- Método atualizar curso com restrição para atualização do número de vagas quando existe pessoas matriculadas
+- Método desativar
+- Acrescentar atributo ativo na busca dinâmica
