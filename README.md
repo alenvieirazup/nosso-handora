@@ -3,7 +3,7 @@
 ## TODOs
 
 - Modelagem de seções e atividades
-- Fazer o ExceptionHandler
+- Investigar o RuntimeException para customização especial
 - Acrescentar novos conteúdos estudados (migration, teste, log)
 
 ## Dúvidas
@@ -25,3 +25,4 @@
 - Método atualizar curso com restrição para atualização do número de vagas quando existe pessoas matriculadas
 - Método desativar
 - Acrescentar atributo ativo na busca dinâmica
+- Fazer o ExceptionHandler
