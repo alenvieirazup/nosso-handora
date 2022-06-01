@@ -19,10 +19,10 @@ public class AtualizaCursoRequest {
     @NotNull
     private Boolean ativo;
 
-    public AtualizaCursoRequest() {
-    }
+    public AtualizaCursoRequest() {}
 
-    public AtualizaCursoRequest(String nome, String descricao, Integer numeroDeVagas, Boolean ativo) {
+    public AtualizaCursoRequest(String nome, String descricao, Integer numeroDeVagas,
+                                Boolean ativo) {
         this.nome = nome;
         this.descricao = descricao;
         this.numeroDeVagas = numeroDeVagas;
@@ -44,4 +44,5 @@ public class AtualizaCursoRequest {
     public Boolean getAtivo() {
         return ativo;
     }
+
 }

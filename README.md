@@ -4,14 +4,20 @@
 
 - Modelagem de seções e atividades
 - Investigar o RuntimeException para customização especial
-- Acrescentar novos conteúdos estudados (migration, teste, log)
+- Acrescentar novos conteúdos estudados
+  - Migrations
+  - Testes
+  - Logging
+- Utilizar o PostgreSQL
+- Utilizar Docker (Dockfile, docker-compose etc.)
 
 ## Dúvidas
 
-- (Thiago) Lock otimista com mapeamento muitos-para-muitos
-- (Eloy) Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
-- (Denes) Put e pach quando existe atributos de relacionamento
-- (Alen) Em métodos de atualizar podemos passar o request para a entidade
+- [X] (Thiago) Lock otimista com mapeamento muitos-para-muitos
+- [ ] (Eloy) Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
+- [ ] (Denes) Put e pach quando existe atributos de relacionamento
+- [X] (Alen) Em métodos de atualizar podemos passar o request para a entidade
+- Testes das consultas com Specification
 
 ## Feito
 
@@ -26,3 +32,7 @@
 - Método desativar
 - Acrescentar atributo ativo na busca dinâmica
 - Fazer o ExceptionHandler
+- Testes
+  - Cadastrar Curso
+  - Consultar Curso
+  - Consultar Curso dinamicamente (sem testes do uso de Specification)

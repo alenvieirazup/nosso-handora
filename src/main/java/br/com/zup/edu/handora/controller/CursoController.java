@@ -9,9 +9,14 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -42,7 +47,7 @@ public class CursoController {
 
     // Read: GET -> 200(body)
     @GetMapping("/api/cursos/{id}")
-    public ResponseEntity<CursoResponse> consulta(@PathVariable Long id) {
+    public ResponseEntity<CursoResponse> consultar(@PathVariable Long id) {
         Curso curso = repository.findById(
             id
         ).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Curso não encontrado"));
@@ -63,12 +68,20 @@ public class CursoController {
     }
 
     @PutMapping("/api/cursos/{id}")
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizaCursoRequest request){
+    public ResponseEntity<?> atualizar(@PathVariable Long id,
+                                       @RequestBody @Valid AtualizaCursoRequest request) {
 
-        Curso curso = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
-                "Curso com esse id não cadastrado"));
+        Curso curso = repository.findById(id)
+                                .orElseThrow(
+                                    () -> new ResponseStatusException(
+                                        NOT_FOUND, "Curso com esse id não cadastrado"
+                                    )
+                                );
 
-        curso.atualiza(request.getNome(), request.getDescricao(), request.getNumeroDeVagas(), request.getAtivo());
+        curso.atualiza(
+            request.getNome(), request.getDescricao(), request.getNumeroDeVagas(),
+            request.getAtivo()
+        );
 
         repository.save(curso);
 
@@ -76,10 +89,14 @@ public class CursoController {
     }
 
     @PatchMapping("/api/cursos/{id}")
-    public ResponseEntity<?> desativar(@PathVariable Long id){
+    public ResponseEntity<?> desativar(@PathVariable Long id) {
 
-        Curso curso = repository.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
-                "Curso com esse id não cadastrado"));
+        Curso curso = repository.findById(id)
+                                .orElseThrow(
+                                    () -> new ResponseStatusException(
+                                        NOT_FOUND, "Curso com esse id não cadastrado"
+                                    )
+                                );
 
         curso.desativa();
 
@@ -87,7 +104,5 @@ public class CursoController {
 
         return ResponseEntity.noContent().build();
     }
-
-
 
 }

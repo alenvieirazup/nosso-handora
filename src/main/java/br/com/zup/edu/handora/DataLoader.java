@@ -1,14 +1,16 @@
 package br.com.zup.edu.handora;
 
-import br.com.zup.edu.handora.model.Pessoa;
-import br.com.zup.edu.handora.repository.PessoaRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import br.com.zup.edu.handora.model.Curso;
+import br.com.zup.edu.handora.model.Pessoa;
 import br.com.zup.edu.handora.repository.CursoRepository;
+import br.com.zup.edu.handora.repository.PessoaRepository;
 
 @Component
+@Profile("default")
 public class DataLoader implements CommandLineRunner {
 
     private final CursoRepository cursoRepository;
@@ -29,8 +31,7 @@ public class DataLoader implements CommandLineRunner {
                     + "em bancos de dados relacionais, como tirar proveito da JPA e Hibernate ao "
                     + "escrever lógicas de negócio seguras e consistentes em ambientes "
                     + "concorrentes, e também a definir constraints de unicidade no banco de dados.",
-                true,
-                1
+            true, 1
         );
 
         Curso curso2 = new Curso(
@@ -39,7 +40,7 @@ public class DataLoader implements CommandLineRunner {
                     + "Java. Modele entidades, faça queries para listagem e detalhes de objetos. "
                     + "Aprenda como funciona o protocolo HTTP e como usar o Spring Boot para "
                     + "implementar comportamentos para cada um dos verbos HTTP.",
-                1
+            1
         );
 
         Curso curso3 = new Curso(
@@ -48,7 +49,7 @@ public class DataLoader implements CommandLineRunner {
                     + "que devem nortear suas interações com pessoas mais júnior, pares, "
                     + "lideranças e pessoas com outras expertises. Monte apresentações de impacto "
                     + "para o seu time, outros zuppers e clientes. Lide com requisitos e prazos.",
-                1
+            1
         );
 
         Pessoa pessoa1 = new Pessoa("Eloy");

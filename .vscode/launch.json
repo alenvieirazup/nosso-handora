@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-HandoraApplication<handora>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.zup.edu.handora.HandoraApplication",
+      "projectName": "handora",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

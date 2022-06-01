@@ -122,9 +122,11 @@ public class Curso {
         this.descricao = descricao;
         this.ativo = ativo;
 
-        if (numeroDeVagas < this.turma.tamanho()){
-            throw new CursoNumeroDeVagasMenorException("Não permitido diminuir número de vagas do curso para uma " +
-                    "quantidade menor que o número de pessoas matriculadas");
+        if (numeroDeVagas < this.turma.tamanho()) {
+            throw new CursoNumeroDeVagasMenorException(
+                "Não permitido diminuir número de vagas do curso para uma "
+                        + "quantidade menor que o número de pessoas matriculadas"
+            );
         }
 
         this.numeroDeVagas = numeroDeVagas;
@@ -133,4 +135,5 @@ public class Curso {
     public void desativa() {
         this.ativo = false;
     }
+
 }

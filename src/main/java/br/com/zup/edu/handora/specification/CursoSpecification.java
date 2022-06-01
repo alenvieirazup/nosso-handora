@@ -47,9 +47,7 @@ public class CursoSpecification {
                 return criteriaBuilder.conjunction();
             }
 
-            return criteriaBuilder.equal(
-                    root.get("ativo"), ativo
-            );
+            return criteriaBuilder.equal(root.get("ativo"), ativo);
 
         };
     }

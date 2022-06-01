@@ -1,12 +1,13 @@
 package br.com.zup.edu.handora.exception;
 
-import org.springframework.validation.FieldError;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.validation.FieldError;
+
 public class ErroPadronizado {
+
     private Integer codigoHttp;
     private String mensagemHttp;
     private String mensagemGeral;

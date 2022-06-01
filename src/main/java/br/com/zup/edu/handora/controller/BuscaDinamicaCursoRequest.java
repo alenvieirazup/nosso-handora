@@ -6,7 +6,6 @@ public class BuscaDinamicaCursoRequest {
 
     private List<String> nomes;
     private String descricao;
-
     private Boolean ativo;
 
     public BuscaDinamicaCursoRequest() {}
@@ -28,4 +27,5 @@ public class BuscaDinamicaCursoRequest {
     public Boolean getAtivo() {
         return ativo;
     }
+
 }
