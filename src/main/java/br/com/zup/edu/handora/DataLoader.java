@@ -52,8 +52,8 @@ public class DataLoader implements CommandLineRunner {
             1
         );
 
-        Pessoa pessoa1 = new Pessoa("Eloy");
-        Pessoa pessoa2 = new Pessoa("Denes");
+        Pessoa pessoa1 = new Pessoa("Eloy", "47690351018");
+        Pessoa pessoa2 = new Pessoa("Denes", "40553950002");
 
         cursoRepository.save(curso1);
         cursoRepository.save(curso2);

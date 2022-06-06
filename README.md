@@ -10,12 +10,13 @@
   - Logging
 - Utilizar o PostgreSQL
 - Utilizar Docker (Dockfile, docker-compose etc.)
+- Tratar concorrência no cadastro de pessoa
 
 ## Dúvidas
 
 - [X] (Thiago) Lock otimista com mapeamento muitos-para-muitos
-- [ ] (Eloy) Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
-- [ ] (Denes) Put e pach quando existe atributos de relacionamento
+- [X] (Eloy) Ordem de operações na transação: atualização da entidade e atualização de tabela de relacionamento
+- [X] (Denes) Put e pach quando existe atributos de relacionamento
 - [X] (Alen) Em métodos de atualizar podemos passar o request para a entidade
 - Testes das consultas com Specification
 
@@ -36,3 +37,5 @@
   - Cadastrar Curso
   - Consultar Curso
   - Consultar Curso dinamicamente (sem testes do uso de Specification)
+  - Cadastrar Pessoa
+- Cadastro de pessoa
