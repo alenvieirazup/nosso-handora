@@ -36,6 +36,7 @@
 - Testes
   - Cadastrar Curso
   - Consultar Curso
+  - Atualizar Curso
   - Consultar Curso dinamicamente (sem testes do uso de Specification)
   - Cadastrar Pessoa
 - Cadastro de pessoa
