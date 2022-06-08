@@ -1,6 +1,7 @@
 package br.com.zup.edu.handora.controller;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 
 import java.net.URI;
 import java.util.List;
@@ -77,6 +78,12 @@ public class CursoController {
                                         NOT_FOUND, "Curso com esse id não cadastrado"
                                     )
                                 );
+
+        if (request.getNumeroDeVagas() < curso.getTurma().tamanho()) {
+            throw new ResponseStatusException(UNPROCESSABLE_ENTITY,
+                    "Não permitido diminuir número de vagas do curso para uma "
+                    + "quantidade menor que o número de pessoas matriculadas");
+        }
 
         curso.atualiza(
             request.getNome(), request.getDescricao(), request.getNumeroDeVagas(),

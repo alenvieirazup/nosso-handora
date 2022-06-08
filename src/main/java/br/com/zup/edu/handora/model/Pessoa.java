@@ -1,5 +1,6 @@
 package br.com.zup.edu.handora.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Pessoa {
 
     @ManyToMany
     @JoinTable(name = "pessoa_turma", joinColumns = @JoinColumn(name = "pessoa_id"), inverseJoinColumns = @JoinColumn(name = "turma_id"))
-    private Set<Turma> turmas;
+    private Set<Turma> turmas = new HashSet<>();
 
     public Pessoa(String nome, String cpf) {
         this.nome = nome;
