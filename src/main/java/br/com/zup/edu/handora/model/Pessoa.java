@@ -1,6 +1,7 @@
 package br.com.zup.edu.handora.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -42,4 +43,16 @@ public class Pessoa {
         this.turmas.add(turma);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return id.equals(pessoa.id) && cpf.equals(pessoa.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cpf);
+    }
 }

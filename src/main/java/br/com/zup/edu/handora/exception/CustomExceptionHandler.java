@@ -44,6 +44,19 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(httpStatus).body(erroPadronizado);
     }
 
+    @ExceptionHandler({CursoInativoException.class, CursoSemVagaException.class, NumeroDeVagasMenorQueMatriculadosException.class,PessoaJaMatriculadaException.class})
+    public ResponseEntity<ErroPadronizado> handleCustomExceptions(RuntimeException ex,
+                                                                WebRequest webRequest) {
+        HttpStatus httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
+        String mensagemGeral = "There was a problem with your request.";
+        ErroPadronizado erroPadronizado = gerarErroPadronizado(
+                httpStatus, webRequest, mensagemGeral
+        );
+        erroPadronizado.adicionarErro(ex.getMessage());
+
+        return ResponseEntity.status(httpStatus).body(erroPadronizado);
+    }
+
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
     public ResponseEntity<ErroPadronizado> handleObjectOptimisticLockingFailure(ObjectOptimisticLockingFailureException ex,
                                                                                 WebRequest webRequest) {
