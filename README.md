@@ -39,4 +39,5 @@
   - Atualizar Curso
   - Consultar Curso dinamicamente (sem testes do uso de Specification)
   - Cadastrar Pessoa
+  - Matricular Pessoa
 - Cadastro de pessoa
